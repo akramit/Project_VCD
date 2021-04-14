@@ -1,0 +1,168 @@
+Shattered Set is 000 
+
+Shattered Set is 001 
+
+Shattered Set is 010 
+
+Shattered Set is 011 
+
+Shattered Set is 100 
+
+Shattered Set is 101 
+
+Shattered Set is 110 
+
+Shattered Set is 111 
+
+Shattered Set is 000 001 
+
+Shattered Set is 000 010 
+
+Shattered Set is 001 010 
+
+Shattered Set is 000 011 
+
+Shattered Set is 001 011 
+
+Shattered Set is 010 011 
+
+Shattered Set is 000 100 
+
+Shattered Set is 001 100 
+
+Shattered Set is 010 100 
+
+Shattered Set is 011 100 
+
+Shattered Set is 000 101 
+
+Shattered Set is 001 101 
+
+Shattered Set is 010 101 
+
+Shattered Set is 011 101 
+
+Shattered Set is 100 101 
+
+Shattered Set is 000 110 
+
+Shattered Set is 001 110 
+
+Shattered Set is 010 110 
+
+Shattered Set is 011 110 
+
+Shattered Set is 100 110 
+
+Shattered Set is 101 110 
+
+Shattered Set is 000 111 
+
+Shattered Set is 001 111 
+
+Shattered Set is 010 111 
+
+Shattered Set is 011 111 
+
+Shattered Set is 100 111 
+
+Shattered Set is 101 111 
+
+Shattered Set is 110 111 
+
+Shattered Set is 000 001 010 
+
+Shattered Set is 001 010 011 
+
+Shattered Set is 000 001 100 
+
+Shattered Set is 000 010 100 
+
+Shattered Set is 001 010 100 
+
+Shattered Set is 000 011 100 
+
+Shattered Set is 001 011 100 
+
+Shattered Set is 010 011 100 
+
+Shattered Set is 000 010 101 
+
+Shattered Set is 001 010 101 
+
+Shattered Set is 000 011 101 
+
+Shattered Set is 001 011 101 
+
+Shattered Set is 010 011 101 
+
+Shattered Set is 001 100 101 
+
+Shattered Set is 010 100 101 
+
+Shattered Set is 011 100 101 
+
+Shattered Set is 000 001 110 
+
+Shattered Set is 001 010 110 
+
+Shattered Set is 000 011 110 
+
+Shattered Set is 001 011 110 
+
+Shattered Set is 010 011 110 
+
+Shattered Set is 001 100 110 
+
+Shattered Set is 010 100 110 
+
+Shattered Set is 011 100 110 
+
+Shattered Set is 000 101 110 
+
+Shattered Set is 001 101 110 
+
+Shattered Set is 010 101 110 
+
+Shattered Set is 011 101 110 
+
+Shattered Set is 100 101 110 
+
+Shattered Set is 001 010 111 
+
+Shattered Set is 001 100 111 
+
+Shattered Set is 010 100 111 
+
+Shattered Set is 011 100 111 
+
+Shattered Set is 010 101 111 
+
+Shattered Set is 011 101 111 
+
+Shattered Set is 001 110 111 
+
+Shattered Set is 011 110 111 
+
+Shattered Set is 101 110 111 
+
+Shattered Set is 000 001 010 100 
+
+Shattered Set is 001 010 011 100 
+
+Shattered Set is 001 010 100 101 
+
+Shattered Set is 001 010 100 110 
+
+Shattered Set is 000 011 101 110 
+
+Shattered Set is 001 011 101 110 
+
+Shattered Set is 010 011 101 110 
+
+Shattered Set is 011 100 101 110 
+
+Shattered Set is 001 010 100 111 
+
+Shattered Set is 011 101 110 111 
+
