@@ -1,0 +1,10 @@
+# Python cache files
+__pycache__/
+
+# Environment
+.env
+.venv/
+venv/
+
+# Output Files
+*.out
