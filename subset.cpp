@@ -3,11 +3,11 @@ using namespace std;
 
 int main(){
 	int d,n,i,j;
-	n=15; d=2;
-	vector<int> a={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+	//n=15; d=2;
+	vector<int> a;//={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 	vector<vector<int> > subset;
-	//cout<<"Enter subset size and n";
-	//cin>>d>>n;
+	cout<<"Enter subset size and n";
+	cin>>d>>n;
 	int counter=0,pow_set=pow(2,n);
 	while(counter<pow_set){
 		//find set bits and insert
