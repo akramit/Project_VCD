@@ -1,6 +1,7 @@
 from itertools import chain, combinations
 from graph import generate_random_graph
 import math
+import subprocess
 
 def power_set(iterable):
     """
@@ -49,10 +50,12 @@ def find_largest_shattered_set(universe, family):
     """
     n = len(universe)
     largest_shattered_set = set()
+    shattered_set_ub = math.floor(math.log2(n)) + 1
     all_shattered_sets = []
     
     # Check all subsets of the universe
-    for k in range(n + 1):  # Iterate through subset sizes
+    for k in range(shattered_set_ub):  # Iterate through subset sizes
+        print(f"Going through all sets of size {k}")
         for subset in combinations(universe, k):
             # print("Subset to Shatter - ", subset)
             if is_shattered(set(subset), family):
@@ -71,6 +74,49 @@ def compute_vc_dimension(n, family):
     # print(family)
     largest_shattered_set, size, all_shattered_sets = find_largest_shattered_set(universe, family)
     return largest_shattered_set, size, all_shattered_sets
+
+def experiment_bad_algo_vs_inria() : 
+    n = 35
+    # for i in range(100) : # no of iterations
+    family, filename = generate_random_graph(n) 
+    degree_of_vertices = [len(subset) for subset in family]
+    log_degree_of_vertices = [math.floor(math.log2(degree)) + 1 for degree in degree_of_vertices]
+    shattered_set, vc_dimension, all_shattered_sets = compute_vc_dimension(n, family)
+    # print(f'Graph : {family}')
+    print(f"Largest Shattered Set: {shattered_set}")
+    print(f"VC Dimension: {vc_dimension}")
+    print("Shattered Sets")
+    for s in all_shattered_sets : 
+        print(s)
+    print("#####################")
+    print("                     ")
+    run_inria_algo(filename)
+
+
+
+def run_inria_algo(filename) : 
+    print("Running Inria Algo")
+    command = f"./_build/main vcdim {filename}"
+
+    try:
+        # Run the command
+        result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+        print(result.stdout)
+        # Print errors if any
+        if result.stderr:
+            print("Command Errors:")
+            print(result.stderr)
+    except subprocess.CalledProcessError as e:
+        print(f"Command failed with exit code {e.returncode}")
+        print(f"Error Output: {e.stderr}")
+
+
+# Main 
+if __name__ == "__main__":
+    # experiment_degree_and_shattered_set_size()
+    experiment_bad_algo_vs_inria()
+
+
 
 def experiment_degree_and_shattered_set_size() :
     for n in range(1, 1000) :  
@@ -98,7 +144,3 @@ def experiment_degree_and_shattered_set_size() :
                         print(f"Degree of Vertices: {degree_of_vertices}")
                         print(f"Log Degree + 1 of Vertices: {log_degree_of_vertices}")
         print(f"No Counter Examples for vertex size {n}")
-
-# Example usage
-if __name__ == "__main__":
-    experiment_degree_and_shattered_set_size()

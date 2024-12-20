@@ -1,0 +1,5 @@
+/home/amitroy/Documents/GitHub/graph-vcdim/_build/CMakeFiles/rebuild_cache.dir
+/home/amitroy/Documents/GitHub/graph-vcdim/_build/CMakeFiles/edit_cache.dir
+/home/amitroy/Documents/GitHub/graph-vcdim/_build/CMakeFiles/unit.dir
+/home/amitroy/Documents/GitHub/graph-vcdim/_build/CMakeFiles/main.dir
+/home/amitroy/Documents/GitHub/graph-vcdim/_build/CMakeFiles/common.dir
