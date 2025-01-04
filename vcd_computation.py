@@ -52,12 +52,24 @@ def find_largest_shattered_set(universe, family):
     largest_shattered_set = set()
     shattered_set_ub = math.floor(math.log2(n)) + 1
     all_shattered_sets = []
+
+    degree_of_vertices = [len(subset) for subset in family]
     
     # Check all subsets of the universe
     for k in range(shattered_set_ub):  # Iterate through subset sizes
-        print(f"Going through all sets of size {k}")
+        # print(f"Going through all sets of size {k}")
         for subset in combinations(universe, k):
             # print("Subset to Shatter - ", subset)
+            # Skip the set if degree bound is not met
+            degree_of_subset = [degree_of_vertices[i - 1] for i in subset]
+            degree_bound_violated = False
+            for deg in degree_of_subset : 
+                if k > deg :
+                    degree_bound_violated = True 
+                    break
+            if (degree_bound_violated) :
+                continue
+
             if is_shattered(set(subset), family):
                 all_shattered_sets.append(set(subset))
                 if len(subset) > len(largest_shattered_set):
@@ -71,12 +83,24 @@ def compute_vc_dimension(n, family):
     """
     universe = set(range(1, n + 1))
     family = [set(f) for f in family]  # Convert family to a list of sets
-    # print(family)
     largest_shattered_set, size, all_shattered_sets = find_largest_shattered_set(universe, family)
     return largest_shattered_set, size, all_shattered_sets
 
+def print_all_shattered_sets() : 
+    family =[{1,2,3}, {2,4,5,1}, {3,6,7,1}, {4,2, 8}, {5,2}, {6,3}, {7,3}, {8,4}]
+    largest_shattered_set, size, all_shattered_sets = compute_vc_dimension(8, family)
+    for subset in all_shattered_sets: 
+        print(subset)
+
+
+# Main 
+if __name__ == "__main__":
+    # All Shattered sets
+    print_all_shattered_sets()
+
+
 def experiment_bad_algo_vs_inria() : 
-    n = 35
+    n = 50
     # for i in range(100) : # no of iterations
     family, filename = generate_random_graph(n) 
     degree_of_vertices = [len(subset) for subset in family]
@@ -85,38 +109,12 @@ def experiment_bad_algo_vs_inria() :
     # print(f'Graph : {family}')
     print(f"Largest Shattered Set: {shattered_set}")
     print(f"VC Dimension: {vc_dimension}")
-    print("Shattered Sets")
-    for s in all_shattered_sets : 
-        print(s)
+    # print("Shattered Sets")
+    # for s in all_shattered_sets : 
+    #     print(s)
     print("#####################")
     print("                     ")
-    run_inria_algo(filename)
-
-
-
-def run_inria_algo(filename) : 
-    print("Running Inria Algo")
-    command = f"./_build/main vcdim {filename}"
-
-    try:
-        # Run the command
-        result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
-        print(result.stdout)
-        # Print errors if any
-        if result.stderr:
-            print("Command Errors:")
-            print(result.stderr)
-    except subprocess.CalledProcessError as e:
-        print(f"Command failed with exit code {e.returncode}")
-        print(f"Error Output: {e.stderr}")
-
-
-# Main 
-if __name__ == "__main__":
-    # experiment_degree_and_shattered_set_size()
-    experiment_bad_algo_vs_inria()
-
-
+    # run_inria_algo(filename)
 
 def experiment_degree_and_shattered_set_size() :
     for n in range(1, 1000) :  
@@ -144,3 +142,46 @@ def experiment_degree_and_shattered_set_size() :
                         print(f"Degree of Vertices: {degree_of_vertices}")
                         print(f"Log Degree + 1 of Vertices: {log_degree_of_vertices}")
         print(f"No Counter Examples for vertex size {n}")
+
+
+def run_inria_algo(filename) : 
+    print("Running Inria Algo")
+    command = f"./_build/main vcdim {filename}"
+
+    try:
+        # Run the command
+        result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+        print(result.stdout)
+        # Print errors if any
+        if result.stderr:
+            print("Command Errors:")
+            print(result.stderr)
+    except subprocess.CalledProcessError as e:
+        print(f"Command failed with exit code {e.returncode}")
+        print(f"Error Output: {e.stderr}")
+
+
+# [{1, 3, 5, 8, 9}, {2, 3, 5, 6, 7, 8, 9, 10}, {1, 2, 3, 5, 10}, {8, 4, 6, 7},
+# {1, 2, 3, 5, 9, 10}, {2, 4, 6, 7, 8, 10}, {2, 4, 6, 7, 8, 9, 10}, {1, 2, 4, 6, 7, 8},
+# {1, 2, 5, 7, 9}, {2, 3, 5, 6, 7, 10}]
+
+# {7, 9, 10 } trace = [ {7}, {9}, {10}, {9,10}, {7, 10}, , {7,9}, {7,9,10}]
+
+
+### New Algo 
+# 1. Run from 1 to log n only 
+# 2. Make a binary search on VC Dimension - (Later)
+# 3. If Found a shattered set 
+# 3.1 Remove all the vertices of degree lesser than size of the shattered set 
+# 4. Continue the process until - Shattered Set = universe
+# Time Complexity - 
+
+# Based on degree we can eliminate many vertices 
+# 1. Find VC dimension as below
+# 2. Choose a number k - denoting vc dimension. |Z| <= deg(v)
+# 3. Remove all the vertices with degree < k from the Universe 
+# 4. Find a shattered set -> If found then update value of k as per binary search 
+# 5. If not found then decrease the value of vc dimension.
+
+# Subroutine - Find a shattered sets - n^k 
+# Properties related to degree
